@@ -1,18 +1,18 @@
 # hello_http
+
 Hello world with a webserver in C
 
-
 ## How to build
-```gcc -o dummyserv dummy_serv.c```
 
-Or to build a static binary
-
-```gcc -o dummyserv dummy_serv.c```
+```docker build -t ubuntu_dev .```
 
 ## How to run
-The port argument is optional and when not included the service will default to port 8080
 
-```dummyserv <port>```
+Service default port is 8080 inside docker container, in production, app runs on port 12344.
 
+```docker run -dp 127.0.0.1:12344:8080 ubuntu_dev```
 
+## Access hello webserver
 
+Once container is running, go to your browser and access the hello server
+[http://127.0.0.1:12344/] or [http://localhost:12344/]
