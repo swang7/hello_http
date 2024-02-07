@@ -4,8 +4,10 @@ Hello world with a webserver in C
 
 ## How to build and run
 
-```terraform init (only need to do one time)```
-```terraform apply```
+```sh
+terraform init (only need to run one time)
+terraform apply
+```
 
 ## Access hello webserver
 
