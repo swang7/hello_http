@@ -2,15 +2,10 @@
 
 Hello world with a webserver in C
 
-## How to build
+## How to build and run
 
-```docker build -t ubuntu_dev .```
-
-## How to run
-
-Service default port is 8080 inside docker container, in production, app runs on port 12344.
-
-```docker run --name=hello -dp 127.0.0.1:12344:8080 ubuntu_dev```
+```terraform init (only need to do one time)```
+```terraform apply```
 
 ## Access hello webserver
 
@@ -21,7 +16,4 @@ Once container is running, go to your browser and access the hello server
 
 When done, stop and delete the container
 
-```sh
-docker stop hello
-docker rm hello
-```
+```terraform destroy```
