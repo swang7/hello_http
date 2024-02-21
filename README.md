@@ -5,17 +5,19 @@ Hello world with a webserver in C
 ## How to build and run
 
 ```sh
+packer init (only need to run one time)
+packer build packer_hw5.pkr.hcl 
 terraform init (only need to run one time)
 terraform apply
 ```
 
 ## Access hello webserver
 
-Once container is running, go to your browser and access the hello server
-[http://127.0.0.1:12344/] or [http://localhost:12344/]
+Once aws instance is running, go to your browser and access the hello server
+[http://\<hostid output from terraform apply\>:8080]
 
-## Shutdown Container
+## Shutdown aws instance
 
-When done, stop and delete the container
+When done, terminate the aws instance
 
 ```terraform destroy```

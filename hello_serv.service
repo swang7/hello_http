@@ -1,0 +1,10 @@
+[Unit]
+Description=Hello world webserver
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+[Service]
+ExecStart=/home/ubuntu/dummyserv 
+
+[Install]
+WantedBy=multi-user.target
