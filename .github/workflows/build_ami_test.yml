@@ -1,9 +1,8 @@
-name: Build Our AMI 
+name: Build Our AMI Test
 run-name: ${{ github.actor }} is building AMI
 on: [push]
 jobs:
   BuildHelloServAmiImageTest:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
