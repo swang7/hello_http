@@ -1,17 +1,4 @@
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
-    }
-  }
-}
-
 provider "docker" {}
-
-resource "docker_network" "private_network" {
-  name = "my_network"
-}
 
 resource "docker_image" "ubuntu_dev" {
   name = "ubuntu_dev"
@@ -20,17 +7,16 @@ resource "docker_image" "ubuntu_dev" {
   }
 }
 
-resource "docker_container" "ubuntu_dev" {
-  image = docker_image.ubuntu_dev.image_id
-  name = "web"
+provider "aws" {
+  region = var.region
+}
 
-  ports {
-    internal = "8080"
-    external = "12344"
-    ip = "127.0.0.1"
-  }
-
-  networks_advanced {
-    name = docker_network.private_network.id
+resource "terraform_data" "upload" {
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${var.ecr_repo}
+      docker tag ${docker_image.ubuntu_dev.image_id} ${var.ecr_repo}:${var.container_tag}
+      docker push ${var.ecr_repo}:${var.container_tag}
+    EOT
   }
 }
